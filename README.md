@@ -4,7 +4,7 @@ This is a hands-on AWS project where I connected an Amazon EFS file system to an
 
 I created the EFS file system, configured the mount target and security group, mounted EFS on the EC2 instance, and tested file access.
 
-## What I used
+## What I Used
 
 - AWS EC2
 - Amazon EFS
@@ -13,28 +13,43 @@ I created the EFS file system, configured the mount target and security group, m
 - Amazon Linux 2023
 - Linux
 - Bash
-- Git and GitHub
+- Git
+- GitHub
 
-## What I did
+## What I Did
 
 1. Created an EC2 instance using Amazon Linux 2023.
 2. Created an Amazon EFS file system.
 3. Configured the EFS mount target.
 4. Configured the Security Group for NFS traffic on port 2049.
 5. Connected to the EC2 instance using EC2 Instance Connect.
-6. Mounted EFS on the EC2 instance.
-7. Created and tested files on the EFS storage.
-8. Created a Bash script to verify the EFS mount.
-9. Uploaded the project to GitHub.
+6. Mounted EFS on the EC2 instance using TLS.
+7. Created, wrote, and read test files on the EFS storage.
+8. Configured the EFS mount for persistent access.
+9. Created a Bash script to verify the EFS mount.
+10. Documented the setup and uploaded the project to GitHub.
 
-## How it works
+## EFS Mount
 
-The EC2 instance accesses the EFS file system using NFS.
+The EFS file system was mounted on the EC2 instance at:
 
-```text
-EC2 Instance
-    |
-    | NFS - TCP 2049
-    |
-    v
-Amazon EFS
+`/mnt/efs`
+
+I verified the mount using Linux commands and confirmed that the file system was accessible.
+
+## Security Configuration
+
+The Security Group was configured to allow NFS traffic required for communication between the EC2 instance and EFS.
+
+- Protocol: TCP
+- Port: 2049
+- Service: NFS
+
+The EFS file system policy was also configured to allow the required client access while using secure transport.
+
+## Testing
+
+I tested the EFS connection by creating a file on the mounted file system:
+
+```bash
+echo "EFS working successfully" | sudo tee /mnt/efs/efs-test.txt
