@@ -53,3 +53,15 @@ I tested the EFS connection by creating a file on the mounted file system:
 
 ```bash
 echo "EFS working successfully" | sudo tee /mnt/efs/efs-test.txt
+
+## Outcome / Benefits
+
+* Successfully connected Amazon EFS to an EC2 instance for shared file storage.
+* Demonstrated how AWS compute and storage services work together.
+* Stored files on EFS instead of relying only on the EC2 instance's local storage.
+* Demonstrated scalable and persistent file storage using Amazon EFS.
+* Configured security controls to allow required NFS communication between EC2 and EFS.
+* Verified that files could be created, written, and read successfully from the mounted EFS file system.
+* Gained practical experience with AWS EC2, EFS, VPC, Security Groups, Linux, and Bash.
+
+
